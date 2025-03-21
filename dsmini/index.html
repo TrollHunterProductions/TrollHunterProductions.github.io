@@ -1,0 +1,412 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Trollhunter DSmini</title>
+    
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+    
+    
+    <script src="scripts/index.js"></script>
+   
+   </head>
+   
+   <body onload="init()" class="bg-black">
+   
+   <!-- Button trigger modal -->
+<button hidden id="showSplash" type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
+  splash
+</button>
+   <!-- Modal -->
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content bg-dark text-warning border">
+      <div class="modal-header">
+        <div class="fs-1 text-centered text-warning w-100">DSmini</div>
+        
+        <button type="button" class="btn-close bg-light" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body text-center">
+        <img class="border border-0 rounded-circle" style=" width:300px; height:300px;" src="images/splash.jpg">
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<!-- Account Sort Modal -->
+<div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content bg-secondary text-light">
+      <div class="modal-header">
+        <h1 class="modal-title fs-5" id="staticBackdropLabel">Sort Accounts</h1>
+        <button id="asortCloseBT" type="button" class="btn-close bg-light" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        
+        
+        
+        <div class="d-flex w-100">
+          
+          <div class="flex m-2">
+  
+            <div class="form-check">
+              <input class="form-check-input" type="radio" name="sortBy" id="sortName" value="name" checked>
+              <label class="form-check-label" for="sortName">
+                Name
+              </label>
+            </div>
+            <div class="form-check">
+              <input class="form-check-input" type="radio" name="sortBy" id="sortStatus" value="status">
+              <label class="form-check-label" for="sortStatus">
+                Status
+              </label>
+            </div>
+            
+          </div>
+          
+          <div class="flex m-2">
+            
+            <div class="form-check">
+              <input class="form-check-input" type="radio" name="sortOrder" id="sortAsc" value=asc checked>
+              <label class="form-check-label" for="sortAsc">
+                Ascending
+              </label>
+            </div>
+            <div class="form-check">
+              <input class="form-check-input" type="radio" name="sortOrder" id="sortDec" value="dec">
+              <label class="form-check-label" for="sortDec">
+                Descending
+              </label>
+            </div>
+            
+          </div>
+        
+        
+          <div ckass="flex m-2">
+            
+            <div class="form-check">
+              <input class="form-check-input" type="checkbox" value="" id="saveSort">
+              <label class="form-check-label" for="saveSort">
+                Save
+              </label>
+            </div>
+            
+          </div>
+        
+        
+       </div>
+        
+        
+        
+      </div>
+      <div class="modal-footer">
+        <button id="asortCancelBT" type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+        <button onclick="sortAccounts()" type="button" class="btn btn-primary">Sort</button>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- Account Sort Modal -->
+   
+   
+   
+   
+    <button 
+      hidden 
+      onclick="testSetData()" 
+      class="btn btn-sm btn-primary" 
+      type="button">
+      test data
+    </button>
+    
+     <button 
+      hidden 
+      onclick="saveAccountData()" 
+      class="btn btn-sm btn-primary" 
+      type="button">
+      Save
+    </button>
+    
+    <button 
+      hidden 
+      onclick="getAccountData()"
+      class="btn btn-sm btn-primary" 
+      type="button">
+      Get
+    </button>
+    
+    <button 
+      hidden 
+      onclick="deleteAccountData()" 
+      class="btn btn-sm btn-primary" 
+      type="button">
+      Clear
+    </button>
+   
+   
+   
+   <div class="d-flex justify-content-between">
+   
+   <div class="flex">
+      <button onclick="getComments() " class="btn bg-transparent fs-1 p-0">
+      🔄
+    </button>
+</div>
+
+<div class="flex">
+ <div class="dropdown">
+  <button class="btn btn-sm btn-primary dropdown-toggle m-2" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+    Menu
+  </button>
+  <ul class="dropdown-menu bg-dark border border-1">
+    <li>
+      <button 
+        onclick="setVideo()" 
+        class="dropdown-item text-light bg-body-tertiary" 
+        type="button">Set Video
+      </button>
+    </li>
+    <li>
+      <button 
+        onclick="accounts()" 
+        class="dropdown-item text-light bg-body-tertiary" 
+        type="button">Accounts
+      </button>
+    </li>
+    <li>
+      <button 
+        onclick="settings()" 
+        class="dropdown-item text-light bg-body-tertiary" 
+        type="button">
+        Settings
+      </button>
+    </li>
+    <li><hr class="dropdown-divider"></li>
+    <li>
+      <button 
+        onclick="help()" 
+        class="dropdown-item text-light bg-body-tertiary" 
+        type="button">
+        Help
+      </button>
+    </li>   
+  </ul>
+</div>
+</div>
+
+</div>
+
+
+ 
+ 
+  <button hidden id="videoCLbt" class="btn btn-sm btn-primary" type="button" data-bs-toggle="collapse" data-bs-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
+    Video
+  </button>
+  
+
+  
+ <div class="collapse" id="collapseExample">
+  <div class="m-3 text-light">
+    
+    Channels
+    <div id="channelSLdiv">
+    
+    </div>
+    
+    Videos
+    <div id="videoSLdiv" class="mb-5">
+    
+    </div>
+    
+    
+    
+    <button 
+      id="loadCommentsBT" 
+      type="button" 
+      class="btn btn-sm btn-primary" 
+      onclick="loadVideo()">
+      load
+    </button>
+    <button 
+      id="clearBT" 
+      type="button" 
+      class="btn btn-sm btn-primary" 
+      onclick="clearShareLink()">
+      clear
+    </button>
+    <input id="shareLink" class="form-control bg-dark text-light" type="text" placeholder="paste shared link" aria-label="Youtube shared link">
+  </div>
+</div>
+   
+
+
+<!-- SETTINGS OFF OFFCANVAS -->
+<button 
+  hidden 
+  id="settingsOCbt" 
+  class="btn btn-primary" 
+  type="button" 
+  data-bs-toggle="offcanvas" 
+  data-bs-target="#settingsOC" 
+  aria-controls="settingsOC">
+  settings
+</button>
+
+<div class="offcanvas offcanvas-start bg-dark" tabindex="-1" id="settingsOC" aria-labelledby="settingsOCLabel">
+  <div class="offcanvas-header">
+    <h5 class="offcanvas-title text-primary" id="settingsOCLabel">Settings</h5>
+    <button type="button" class="btn-close bg-light" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+  </div>
+  <div class="offcanvas-body overflow-scroll">
+    <div class="text-light">
+      
+      <div>
+        
+        <div>DSmini</div>
+        <div>TrollHunterProductions</div>
+        <div>version 1.0</div>
+        
+        <div class="mt-5">
+          
+          <div class="text-info">Youtube Api Key</div>
+        
+          <input id="apifield" class="form-control form-control-sm" type="text" placeholder="paste your key here" aria-label=".form-control-sm example">
+          <div id="curstoredkey" class="fs-6 text-warning"></div>
+          <div>( enter "none" to clear )</div>
+          
+          <button onclick="storeUserKey()" type="button" class="btn btn-primary mt-2">
+            Save
+          </button>
+          
+        </div>
+        
+      </div>
+
+    </div>
+  </div>
+</div>
+<!-- SETTINGS OFF OFFCANVAS -->
+
+
+
+
+
+<!-- HELP OFF OFFCANVAS -->
+<button 
+  hidden 
+  id="helpOCbt" 
+  class="btn btn-primary" 
+  type="button" 
+  data-bs-toggle="offcanvas" 
+  data-bs-target="#helpOC" 
+  aria-controls="helpOC">
+  help
+</button>
+
+<div class="offcanvas offcanvas-start bg-dark" tabindex="-1" id="helpOC" aria-labelledby="helpOCLabel">
+  <div class="offcanvas-header">
+    <h5 class="offcanvas-title text-primary" id="helpOCLabel">Help</h5>
+    <button type="button" class="btn-close bg-light" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+  </div>
+  <div class="offcanvas-body overflow-scroll">
+    <div class="text-light w-100 h-100 m-0">
+       <iframe id="ifhelp" class="w-100 h-100" src="help.html" title="DSmini help"></iframe>
+    </div>
+  </div>
+</div>
+<!-- HELP OFF OFFCANVAS -->
+
+
+
+<!-- ACCOUNTS OFF OFFCANVAS -->
+<button 
+  hidden 
+  id="accountsOCbt" 
+  class="btn btn-primary" 
+  type="button" 
+  data-bs-toggle="offcanvas" 
+  data-bs-target="#accountsOC" 
+  aria-controls="accountsOC">
+  accounts
+</button>
+
+<div class="offcanvas offcanvas-start bg-dark" tabindex="-1" id="accountsOC" aria-labelledby="accountsOCLabel">
+  <div class="offcanvas-header">
+    <h5 class="offcanvas-title text-primary" id="accountsOCLabel">Accounts</h5>
+    
+       <!-- Button trigger modal -->
+<button type="button" class="btn btn-sm btn-primary" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
+  Sort
+</button>
+    
+    
+    
+    <button type="button" class="btn-close bg-light" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+  </div>
+  <div class="offcanvas-body overflow-scroll">
+    <div class="text-light">
+      
+      
+      <div id="accountTableDiv"></div>
+      
+    </div>
+  </div>
+</div>
+<!-- ACCOUNTS OFF OFFCANVAS -->
+
+
+
+
+<!-- COMMENT DETAIL OFFCANVAS -->
+<button hidden id="commentDetailOCbt" class="btn btn-primary" type="button" data-bs-toggle="offcanvas" data-bs-target="#commentDetailOC" aria-controls="commentDetailOC">
+  replies
+</button>
+
+<div class="offcanvas offcanvas-start bg-black" tabindex="-1" id="commentDetailOC" aria-labelledby="commentDetailOCLabel">
+  <div class="offcanvas-header">
+    <h5 class="text-info" id="commentDetailOCLabel">Replies</h5>
+    
+    <button onclick="getReplies() " class="btn bg-transparent fs-1 p-0">
+      🔄
+    </button>
+    
+    
+      <button class="btn btn-sm btn-primary" type="button" data-bs-toggle="collapse" data-bs-target="#commentCL" aria-expanded="false" aria-controls="commentCL">
+    top comment
+  </button>
+    
+    <div class="bg-text-secondary-emphasis text-light">
+    <button type="button" class="btn-close bg-light" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+    </div>
+  </div>
+  
+  <div class="">
+  <div class="collapse" id="commentCL">
+    <div>
+        <div id="commentText"></div>
+    </div>
+  </div>
+    <div class=" overflow-scroll" style="height:600px">
+      <div id="repliesList"></div>
+    </div>
+  </div>
+</div>
+<!-- COMMENT DETAIL OFFCANVAS -->
+
+
+  <div class="mb-3">
+  <div class="form-control text-light bg-dark border border-1" id="vtitle">
+  </div>
+  </div>
+    
+    <div class="m-2 h-25 overflow-scroll" id="commentsList">
+    </div>
+    
+    
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4" crossorigin="anonymous"></script>
+  </body>
+</html>
