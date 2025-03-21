@@ -28,7 +28,7 @@
   let gAccountArr = []
   const gDataIdxName = "AccountDataIdxStr"
   let gAccountIdxArr = []
-  const gSort = "scripts/assets.html"
+  const gSort = "https://trollhunterproductions.github.io./dsmini/scripts/assets.html"
   const gChannelDataName = "ChannelsDataName"
   let gChannelsArr = []
   const gVideosDataName = "VideosDataName"
@@ -756,9 +756,8 @@ function accounts(){
       try {
         if( gOptions === "" ){
           let response = await fetch(gSort)
-          let str = await response.text()
-          str = str.split("</head>")[1]
-          gOptions = str
+          gOptions = await response.text()
+          console.log(gOptions)
           
           return
         }
