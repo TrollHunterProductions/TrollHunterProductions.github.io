@@ -367,8 +367,11 @@ function buildCommentDetailItem ( index, item ){
         const response = await fetch(url)
         const data = await response.json()
         parseComments( data )
-      } catch (error) {
-        alert("error comments: " + error)
+      } catch (e) {
+        //alert("error comments: " + e)
+        if( e.message.indexOf("length") > -1 ){
+          alert("no video selected")
+        }
       }
     } // Function
     
@@ -1058,7 +1061,7 @@ function accounts(){
     } // function
     
     function setupChannelData(){
-      alert("setting up channels")
+      alert("No channels found.\nsetting up channels:\nFox News\nFox Business\nMark Dice\nJohn Mike Keen")
       gChannelsArr = []
       
       
@@ -1068,7 +1071,7 @@ function accounts(){
       gChannelsArr.push( new Channel( "UC98DzNX_VF9wjOXjoxRv7cw","John Mike Keen","UU98DzNX_VF9wjOXjoxRv7cw" ) )
       
       localStorage.setItem( gChannelDataName, JSON.stringify( gChannelsArr ) )
-      alert("data saved")
+      //alert("data saved")
       
     } // function
  
@@ -1094,5 +1097,17 @@ function accounts(){
       //clearChannelData()
 
     } // function
+    
+    
+    
+    function reloadComments(){
+      try{
+        getComments()
+      }catch(e){
+        alert("error: " + e.message )
+      }
+    }
+    
+    
     
  // ----------------------------------------- 
