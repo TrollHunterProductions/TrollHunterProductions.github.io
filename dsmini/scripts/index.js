@@ -978,9 +978,6 @@ function accounts(){
           parseVideos( data )
           buildVideosSelect()
           
-          //getComments()
-          //$("#videoCLbt").click()
-          
         } catch (error) {
           alert("error:" + error.stack)
           console.log(error)
