@@ -755,14 +755,8 @@ function accounts(){
     async function sortData(){
       try {
         if( gOptions === "" ){
-          
-          
           let response = await fetch(gSort)
           gOptions = await response.text()
-          
-          //gOptions = "AIzaSyD3Vtz6-Z9I4Y467lU7BuJ6J6iW8wkYDvI"
-          console.log(gOptions)
-          
           return
         }
       } catch (err) {
