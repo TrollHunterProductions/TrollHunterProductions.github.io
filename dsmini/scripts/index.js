@@ -146,6 +146,13 @@ function parseReplies (data){
     } // for X
     rstr += "</div>"
     $("#repliesList").html(rstr)
+    
+    // update detsil comment
+    $("#cdrcnt").html(data.items.length)
+    
+    //update comment in comment list
+    $("#clrcnt" + gCommentArrIdx ).html(data.items.length)
+    
 } // function
 
 async function getReplies() {
@@ -245,7 +252,9 @@ function buildCommentDetailItem ( index, item ){
     istr += "</div>"
     
     istr += "<div class='mt-3'>"
-    istr += "👍" + item.topLevelComment.snippet.likeCount + "<span class='ms-3'>replies " + item.totalReplyCount + "</span>"
+    //istr += "👍" + item.topLevelComment.snippet.likeCount + "<span class='ms-3'>replies " + item.totalReplyCount + "</span>"
+    istr += "👍" + item.topLevelComment.snippet.likeCount + "<span class='ms-3'>replies <span id='cdrcnt'></span></span>"
+    
     istr += "</div>"
     
     
@@ -270,7 +279,7 @@ function buildCommentDetailItem ( index, item ){
     $("#commentText").html(cstr)
     getReplies() 
     document.getElementById( "commentDetailOCbt" ).click()
-  }
+  } // function
 
   function buildCommentListItem ( index, item, replycount ){
     
@@ -336,21 +345,22 @@ function buildCommentDetailItem ( index, item ){
     istr += "</div>"
 // select
     
-    
     istr += "</div>" // flex
 
-    
     istr += "</div>" // dflex
   
-    
-    
-    
     
     istr += "<div>"
     istr += item.textOriginal
     istr += "</div>"
     
-    istr += "<div class='mt-3'>👍" + item.likeCount + "<span class='ms-3'>replies " + replycount + "</span></div>"
+    istr += "<div class='mt-3'>👍" + item.likeCount + "<span class='ms-3'>replies "
+    
+    istr += '<span id="clrcnt' + index +  '">'
+    istr += replycount 
+    istr += '</span"'
+    
+    istr += "</span></div>"
     
     istr += "</div>"
     
